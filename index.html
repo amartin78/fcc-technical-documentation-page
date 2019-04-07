@@ -5,108 +5,288 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-    <main id="main-doc">
-        <section class="main-section" id="Introduction">
+    <div id="container">
+        <nav id="navbar">
             <header>
-                <p>Introduction</p>
+                <h2>Python<br>Functional Programming<br>HOWTO</h2>
             </header>
-            <p>This section explains the basic concept of functional programming; if you’re just interested in learning
-                about Python l
-                anguage features, skip to the next section on Iterators.</p>
-            <p>Programming languages support decomposing problems in several different ways:</p>
-            <ul>
-                <li>Most programming languages are procedural: programs are lists of instructions that tell the computer
-                    what to do
-                    with the program’s input. C, Pascal, and even Unix shells are procedural languages.</li>
-                <li>In declarative languages, you write a specification that describes the problem to be solved, and the
-                    language
-                    implementation figures out how to perform the computation efficiently. SQL is the declarative
-                    language you’re
-                    most likely to be familiar with; a SQL query describes the data set you want to retrieve, and the
-                    SQL engine
-                    decides whether to scan tables or use indexes, which subclauses should be performed first, etc.</li>
-                <li>Object-oriented programs manipulate collections of objects. Objects have internal state and support
-                    methods
-                    that query or modify this internal state in some way. Smalltalk and Java are object-oriented
-                    languages. C++ and
-                    Python are languages that support object-oriented programming, but don’t force the use of
-                    object-oriented
-                    features.</li>
-                <li>Functional programming decomposes a problem into a set of functions. Ideally, functions only take
-                    inputs and
-                    produce outputs, and don’t have any internal state that affects the output produced for a given
-                    input.
-                    Well-known functional languages include the ML family (Standard ML, OCaml, and other variants) and
-                    Haskell.</li>
-            </ul>
-            <p>The designers of some computer languages choose to emphasize one particular approach to programming. This
-                often makes it difficult to
-                write programs that use a different approach. Other languages are multi-paradigm languages that support
-                several different approaches.
-                Lisp, C++, and Python are multi-paradigm; you can write programs or libraries that are largely
-                procedural, object-oriented, or
-                functional in all of these languages. In a large program, different sections might be written using
-                different approaches; the GUI
-                might be object-oriented while the processing logic is procedural or functional, for example.</p>
-            <p>In a functional program, input flows through a set of functions. Each function operates on its input and
-                produces some
-                output. Functional style discourages functions with side effects that modify internal state or make
-                other changes that
-                aren’t visible in the function’s return value. Functions that have no side effects at all are called
-                purely functional.
-                Avoiding side effects means not using data structures that get updated as a program runs; every
-                function’s output must
-                only depend on its input.</p>
-            <p>Some languages are very strict about purity and don’t even have assignment statements such as a=3 or c =
-                a + b, but it’s difficult to avoid all side effects. Printing to the screen or writing to a disk file
-                are side effects, for example. For example, in Python a call to the print() or time.sleep() function
-                both return no useful value; they’re only called for their side effects of sending some text to the
-                screen or pausing execution for a second.</p>
-            <p>Python programs written in functional style usually won’t go to the extreme of avoiding all I/O or all
-                assignments; instead, they’ll provide a functional-appearing interface but will use non-functional
-                features internally. For example, the implementation of a function will still use assignments to local
-                variables, but won’t modify global variables or have other side effects.</p>
-            <p>Functional programming can be considered the opposite of object-oriented programming. Objects are little
-                capsules containing some internal state along with a collection of method calls that let you modify this
-                state, and programs consist of making the right set of state changes. Functional programming wants to
-                avoid state changes as much as possible and works with data flowing between functions. In Python you
-                might combine the two approaches by writing functions that take and return instances representing
-                objects in your application (e-mail messages, transactions, etc.).</p>
-            <p>Functional design may seem like an odd constraint to work under. Why should you avoid objects and side
-                effects? There are theoretical and practical advantages to the functional style:</p>
-            <ul>
-                <li>Formal provability</li>
-                <li>Modularity</li>
-                <li>Composability</li>
-                <li>Ease of debugging and testing</li>
-            </ul>
+            <a class="nav-link" href="#Introduction">Introduction</a>
+            <a class="nav-link" href="#Iterators">Iterators</a>
+            <a class="nav-link" href="#Generator_expressions_and_list_comprehensions">Generator expressions and list comprehensions</a>
+            <a class="nav-link" href="#Generators">Generators</a>
+            <a class="nav-link" href="#Built-in_functions">Built-in functions</a>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="Introduction">
+                <header>
+                    <p>Introduction</p>
+                </header>
+                <p>This section explains the basic concept of functional programming; if you’re just interested in learning
+                    about Python language features, skip to the next section on Iterators.</p>
+                <p>Programming languages support decomposing problems in several different ways:</p>
+                <ul>
+                    <li>Most programming languages are procedural: programs are lists of instructions that tell the computer
+                        what to do
+                        with the program’s input. C, Pascal, and even Unix shells are procedural languages.</li>
+                    <li>In declarative languages, you write a specification that describes the problem to be solved, and the
+                        language
+                        implementation figures out how to perform the computation efficiently. SQL is the declarative
+                        language you’re
+                        most likely to be familiar with; a SQL query describes the data set you want to retrieve, and the
+                        SQL engine
+                        decides whether to scan tables or use indexes, which subclauses should be performed first, etc.</li>
+                    <li>Object-oriented programs manipulate collections of objects. Objects have internal state and support
+                        methods
+                        that query or modify this internal state in some way. Smalltalk and Java are object-oriented
+                        languages. C++ and
+                        Python are languages that support object-oriented programming, but don’t force the use of
+                        object-oriented
+                        features.</li>
+                    <li>Functional programming decomposes a problem into a set of functions. Ideally, functions only take
+                        inputs and
+                        produce outputs, and don’t have any internal state that affects the output produced for a given
+                        input.
+                        Well-known functional languages include the ML family (Standard ML, OCaml, and other variants) and
+                        Haskell.</li>
+                </ul>
+                <p>The designers of some computer languages choose to emphasize one particular approach to programming. This
+                    often makes it difficult to
+                    write programs that use a different approach. Other languages are multi-paradigm languages that support
+                    several different approaches.
+                    Lisp, C++, and Python are multi-paradigm; you can write programs or libraries that are largely
+                    procedural, object-oriented, or
+                    functional in all of these languages. In a large program, different sections might be written using
+                    different approaches; the GUI
+                    might be object-oriented while the processing logic is procedural or functional, for example.</p>
+                <p>In a functional program, input flows through a set of functions. Each function operates on its input and
+                    produces some
+                    output. Functional style discourages functions with side effects that modify internal state or make
+                    other changes that
+                    aren’t visible in the function’s return value. Functions that have no side effects at all are called
+                    purely functional.
+                    Avoiding side effects means not using data structures that get updated as a program runs; every
+                    function’s output must
+                    only depend on its input.</p>
+                <p>Some languages are very strict about purity and don’t even have assignment statements such as a=3 or c =
+                    a + b, but it’s difficult to avoid all side effects. Printing to the screen or writing to a disk file
+                    are side effects, for example. For example, in Python a call to the print() or time.sleep() function
+                    both return no useful value; they’re only called for their side effects of sending some text to the
+                    screen or pausing execution for a second.</p>
+                <p>Python programs written in functional style usually won’t go to the extreme of avoiding all I/O or all
+                    assignments; instead, they’ll provide a functional-appearing interface but will use non-functional
+                    features internally. For example, the implementation of a function will still use assignments to local
+                    variables, but won’t modify global variables or have other side effects.</p>
+                <p>Functional programming can be considered the opposite of object-oriented programming. Objects are little
+                    capsules containing some internal state along with a collection of method calls that let you modify this
+                    state, and programs consist of making the right set of state changes. Functional programming wants to
+                    avoid state changes as much as possible and works with data flowing between functions. In Python you
+                    might combine the two approaches by writing functions that take and return instances representing
+                    objects in your application (e-mail messages, transactions, etc.).</p>
+                <p>Functional design may seem like an odd constraint to work under. Why should you avoid objects and side
+                    effects? There are theoretical and practical advantages to the functional style:</p>
+                <ul>
+                    <li>Formal provability</li>
+                    <li>Modularity</li>
+                    <li>Composability</li>
+                    <li>Ease of debugging and testing</li>
+                </ul>
 
-        </section>
-        <section class="main-section" id="Iterators">
-            <header>
-                <p>Iterators</p>
-            </header>
-        </section>
-        <section class="main-section" id="Generator_expressions_and_list_comprehensions">
-            <header>
-                <p>Generator expressions and list comprehensions</p>
-            </header>
-        </section>
-        <section class="main-section" id="Generators">
-            <header>
-                <p>Generators</p>
-            </header>
-        </section>
-        <section class="main-section" id="Built-in_functions">
-            <header>
-                <p>Built-in functions</p>
-            </header>
-        </section>
-    </main>
+            </section>
+            <section class="main-section" id="Iterators">
+                <header>
+                    <p>Iterators</p>
+                </header>
+                <p>I’ll start by looking at a Python language feature that’s an important foundation for writing
+                    functional-style programs: iterators.</p>
+                <p>An iterator is an object representing a stream of data; this object returns the data one element at a
+                    time. A Python iterator must support a method called __next__() that takes no arguments and always
+                    returns the next element of the stream. If there are no more elements in the stream, __next__() must
+                    raise the StopIteration exception. Iterators don’t have to be finite, though; it’s perfectly reasonable
+                    to write an iterator that produces an infinite stream of data.</p>
+                <p>The built-in iter() function takes an arbitrary object and tries to return an iterator that will return
+                    the object’s contents or elements, raising TypeError if the object doesn’t support iteration. Several of
+                    Python’s built-in data types support iteration, the most common being lists and dictionaries. An object
+                    is called iterable if you can get an iterator for it.</p>
+                <p>You can experiment with the iteration interface manually:</p>
+                <code>
+                        >>> L = [1, 2, 3]<br>
+                        >>> it = iter(L)<br>
+                        >>> it  #doctest: +ELLIPSIS<br>
+                        <...iterator object at ...><br>
+                        >>> it.__next__()  # same as next(it)<br>
+                        1<br>
+                        >>> next(it)<br>
+                        2<br>
+                        >>> next(it)<br>
+                        3<br>
+                        >>> next(it)<br>
+                        Traceback (most recent call last):<br>
+                        File "<stdin>", line 1, in <module><br>
+                        StopIteration<br>
+                        >>>
+                </code>
+                <p>Python expects iterable objects in several different contexts, the most important being the for
+                    statement. In the statement for X in Y, Y must be an iterator or some object for which iter() can create
+                    an iterator. These two statements are equivalent:</p>
+                <code>
+                    for i in iter(obj):<br>
+                        print(i)<br>
+                    for i in obj:<br>
+                        print(i)
+                </code>
+                <p>Iterators can be materialized as lists or tuples by using the list() or tuple() constructor functions:
+                </p>
+                <code>
+                        >>> L = [1, 2, 3]<br>
+                        >>> iterator = iter(L)<br>
+                        >>> t = tuple(iterator)<br>
+                        >>> t<br>
+                        (1, 2, 3)
+                </code>
+                <p>Sequence unpacking also supports iterators: if you know an iterator will return N elements, you can
+                    unpack them into an N-tuple:</p>
+                <code>
+                        >>> L = [1, 2, 3]<br>
+                        >>> iterator = iter(L)<br>
+                        >>> a, b, c = iterator<br>
+                        >>> a, b, c<br>
+                        (1, 2, 3)
+                </code>
+
+                <p>Built-in functions such as max() and min() can take a single iterator argument and will return the
+                    largest or smallest element. The "in" and "not in" operators also support iterators: X in iterator is
+                    true if X is found in the stream returned by the iterator. You’ll run into obvious problems if the
+                    iterator is infinite; max(), min() will never return, and if the element X never appears in the stream,
+                    the "in" and "not in" operators won’t return either.
+                </p>
+                <p>Note that you can only go forward in an iterator; there’s no way to get the previous element, reset the
+                    iterator, or make a copy of it. Iterator objects can optionally provide these additional capabilities,
+                    but the iterator protocol only specifies the __next__() method. Functions may therefore consume all of
+                    the iterator’s output, and if you need to do something different with the same stream, you’ll have to
+                    create a new iterator.
+                </p>
+            </section>
+            <section class="main-section" id="Generator_expressions_and_list_comprehensions">
+                <header>
+                    <p>Generator expressions and list comprehensions</p>
+                </header>
+                <p> Two common operations on an iterator’s output are 1) performing some operation for every element, 2)
+                    selecting a subset of elements that meet some condition. For example, given a list of strings, you might
+                    want to strip off trailing whitespace from each line or extract all the strings containing a given
+                    substring.
+                </p>
+                <p>List comprehensions and generator expressions (short form: “listcomps” and “genexps”) are a concise
+                    notation for such operations, borrowed from the functional programming language Haskell
+                    (https://www.haskell.org/). You can strip all the whitespace from a stream of strings with the following
+                    code:
+                </p>
+                <code>
+                        line_list = ['  line 1\n', 'line 2  \n', ...]<br>
+                        <i># Generator expression -- returns iterator</i><br>
+                        stripped_iter = (line.strip() for line in line_list)<br>
+                        <i># List comprehension -- returns list</i><br>
+                        stripped_list = [line.strip() for line in line_list]
+                </code>
+                <p>You can select only certain elements by adding an "if" condition:</p>
+                <code>
+                        stripped_list = [line.strip() for line in line_list
+                        if line != ""]
+                </code>
+                <p> With a list comprehension, you get back a Python list; stripped_list is a list containing the resulting
+                    lines, not an iterator. Generator expressions return an iterator that computes the values as necessary,
+                    not needing to materialize all the values at once. This means that list comprehensions aren’t useful if
+                    you’re working with iterators that return an infinite stream or a very large amount of data. Generator
+                    expressions are preferable in these situations.
+                </p>
+                <p>Generator expressions are surrounded by parentheses (“()”) and list comprehensions are surrounded by
+                    square brackets (“[]”). Generator expressions have the form:
+                </p>
+                <code>
+                        ( expression for expr in sequence1<br>
+                        if condition1<br>
+                        for expr2 in sequence2<br>
+                        if condition2<br>
+                        for expr3 in sequence3 ...<br>
+                        if condition3<br>
+                        for exprN in sequenceN<br>
+                        if conditionN )
+                </code>
+                <p> Again, for a list comprehension only the outside brackets are different (square brackets instead of
+                    parentheses).
+                </p>
+                <p>The elements of the generated output will be the successive values of expression. The if clauses are all
+                    optional; if present, expression is only evaluated and added to the result when condition is true.
+                </p>
+                <p>Generator expressions always have to be written inside parentheses, but the parentheses signalling a
+                    function call also count. If you want to create an iterator that will be immediately passed to a
+                    function you can write:
+                </p>
+                <code>
+                        obj_total = sum(obj.count for obj in list_all_objects())
+                </code>
+                <p> The for...in clauses contain the sequences to be iterated over. The sequences do not have to be the same
+                    length, because they are iterated over from left to right, not in parallel. For each element in
+                    sequence1, sequence2 is looped over from the beginning. sequence3 is then looped over for each resulting
+                    pair of elements from sequence1 and sequence2.
+                </p>
+                <p> To put it another way, a list comprehension or generator expression is equivalent to the following
+                    Python code:
+                </p>
+                <code>
+                    for expr1 in sequence1:<br>
+                    if not (condition1):<br>
+                        continue   <i># Skip this element</i><br>
+                    for expr2 in sequence2:<br>
+                        if not (condition2):<br>
+                            continue   <i># Skip this element</i><br>
+                        ...<br>
+                        for exprN in sequenceN:<br>
+                            if not (conditionN):<br>
+                                continue   <i># Skip this element</i><br>
+                            # Output the value of<br>
+                            # the expression.<br>
+                </code>
+                <p>This means that when there are multiple for...in clauses but no if clauses, the length of the resulting
+                    output will be equal to the product of the lengths of all the sequences. If you have two lists of length
+                    3, the output list is 9 elements long:</p>
+                <code>
+                        >>> seq1 = 'abc'<br>
+                        >>> seq2 = (1, 2, 3)<br>
+                        >>> [(x, y) for x in seq1 for y in seq2]  #doctest: +NORMALIZE_WHITESPACE<br>
+                        [('a', 1), ('a', 2), ('a', 3),<br>
+                        ('b', 1), ('b', 2), ('b', 3),<br>
+                        ('c', 1), ('c', 2), ('c', 3)]
+                </code>
+                <p>To avoid introducing an ambiguity into Python’s grammar, if expression is creating a tuple, it must be
+                    surrounded with parentheses. The first list comprehension below is a syntax error, while the second one
+                    is correct:</p>
+                <code>
+                        <i># Syntax error</i><br>
+                        [x, y for x in seq1 for y in seq2]<br>
+                        <i># Correct</i><br>
+                        [(x, y) for x in seq1 for y in seq2]<br>
+                </code>
 
 
+
+
+
+
+
+            </section>
+            <section class="main-section" id="Generators">
+                <header>
+                    <p>Generators</p>
+                </header>
+            </section>
+            <section class="main-section" id="Built-in_functions">
+                <header>
+                    <p>Built-in functions</p>
+                </header>
+            </section>
+        </main>
+    </div>
     <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
 </body>
 
