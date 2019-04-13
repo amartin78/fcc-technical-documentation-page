@@ -18,6 +18,11 @@
                 comprehensions</a>
             <a class="nav-link" href="#Generators">Generators</a>
             <a class="nav-link" href="#Built-in_functions">Built-in functions</a>
+            <a class="nav-link" href="#The_itertools_module">The itertools module</a>
+            <a class="nav-link" href="#The_functools_module">The functools module</a>
+            <a class="nav-link" href="#Small_functions_and_the_lambda_expression">Small functions and the lambda expression</a>
+            <a class="nav-link" href="#Revision_History_and_Acknowledgements">Revision History and Acknowledgements</a>
+            <a class="nav-link" href="#References">References</a>
         </nav>
         <main id="main-doc">
             <section class="main-section" id="Introduction">
@@ -398,6 +403,54 @@
             <section class="main-section" id="Built-in_functions">
                 <header>
                     <p>Built-in functions</p>
+                </header>
+                <p>Let’s look in more detail at built-in functions often used with iterators.
+                    Two of Python’s built-in functions, map() and filter() duplicate the features of generator
+                    expressions:</p>
+                <p>map(f, iterA, iterB, ...) returns an iterator over the sequence
+                    f(iterA[0], iterB[0]), f(iterA[1], iterB[1]), f(iterA[2], iterB[2]), ....</p>
+                <code>
+                    >>> def upper(s):<br>
+                    ...     return s.upper()
+                </code>
+                <code>
+                        >>> list(map(upper, ['sentence', 'fragment']))<br>
+                        ['SENTENCE', 'FRAGMENT']<br>
+                        >>> [upper(s) for s in ['sentence', 'fragment']]<br>
+                        ['SENTENCE', 'FRAGMENT']
+                </code>
+                <p> You can of course achieve the same effect with a list comprehension.
+                </p>
+                <p>
+                    <code>filter(predicate, iter) </code>returns an iterator over all the sequence elements that meet a
+                    certain condition, and is similarly duplicated by list comprehensions. A predicate is a function
+                    that returns the truth value of some condition; for use with filter(), the predicate must take a
+                    single value.
+                </p>
+            </section>
+            <section class="main-section" id="The_itertools_module">
+                <header>
+                    <p>The itertools module</p>
+                </header>
+            </section>
+            <section class="main-section" id="The_functools_module">
+                <header>
+                    <p>The functools module</p>
+                </header>
+            </section>
+            <section class="main-section" id="Small_functions_and_the_lambda_expression">
+                <header>
+                    <p>Small functions and the lambda expression</p>
+                </header>
+            </section>
+            <section class="main-section" id="Revision_History_and_Acknowledgements">
+                <header>
+                    <p>Revision History and Acknowledgements</p>
+                </header>
+            </section>
+            <section class="main-section" id="References">
+                <header>
+                    <p>References</p>
                 </header>
             </section>
         </main>

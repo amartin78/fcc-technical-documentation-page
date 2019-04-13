@@ -12,17 +12,18 @@ h2 {
 }
 
 .main-section header {
-    padding-top: 2rem;
+    padding-top: 1rem;
     font-size: 1.4rem;
 }
 
 
 #container {
     display: grid;
-    grid-template-columns: 25% 1fr;
+    grid-template-columns: 23% 1fr;
     grid-template-areas:
     "navbar document";
-    border: 1px solid #333;
+    /* border: 1px solid #333; */
+    
 }
 
 #navbar {
@@ -30,34 +31,41 @@ h2 {
     grid-area: navbar;
     display: grid;
     align-content: flex-start;
-    /* border: 1px solid #333; */
     overflow-y: scroll;
     max-height: 100vh;
-    max-width: 25vw;
+    max-width: 23vw;
+    background-color: white;
+    grid-row-gap: 3px;
 }
 
 #navbar header {
     position: fixed;
-    background-color: white;
-    padding: 0 1.5rem;
+    background-color: lightgray;
+    padding: 0 1.3rem;
     max-width: 20vw;
 }
 
 a {
     color: #333;
     text-decoration: none;
-    border: 1px solid #333;
+    /* border: 1px solid #333; */
     padding: 1rem 0 1rem 1.5rem;
+    background-color: lightgray;
 }
 
 a:first-of-type {
-    padding-top: 11rem;  
-    border-top: 1px solid #333;
+    margin-top: 7.3rem;  
+    /* border-top: 1px solid #333; */
+}
+
+a:last-of-type {
+    margin-bottom: 1rem;
+    /* border-bottom: none; */
 }
 
 #main-doc {
     grid-area: document;
-    border: 1px solid #333;
+    /* border: 1px solid #333; */
     padding: 3rem;
     text-align: justify;
 }
