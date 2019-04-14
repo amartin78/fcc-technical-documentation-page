@@ -20,7 +20,8 @@
             <a class="nav-link" href="#Built-in_functions">Built-in functions</a>
             <a class="nav-link" href="#The_itertools_module">The itertools module</a>
             <a class="nav-link" href="#The_functools_module">The functools module</a>
-            <a class="nav-link" href="#Small_functions_and_the_lambda_expression">Small functions and the lambda expression</a>
+            <a class="nav-link" href="#Small_functions_and_the_lambda_expression">Small functions and the lambda
+                expression</a>
             <a class="nav-link" href="#Revision_History_and_Acknowledgements">Revision History and Acknowledgements</a>
             <a class="nav-link" href="#References">References</a>
         </nav>
@@ -119,6 +120,7 @@
                 </ul>
 
             </section>
+
             <section class="main-section" id="Iterators">
                 <header>
                     <p>Iterators</p>
@@ -139,7 +141,7 @@
                     object
                     is called iterable if you can get an iterator for it.</p>
                 <p>You can experiment with the iteration interface manually:</p>
-                <code>
+                <div class="code-frame"><code>
                         >>> L = [1, 2, 3]<br>
                         >>> it = iter(L)<br>
                         >>> it  #doctest: +ELLIPSIS<br>
@@ -155,36 +157,36 @@
                         File "<stdin>", line 1, in <module><br>
                         StopIteration<br>
                         >>>
-                </code>
+                </code></div>
                 <p>Python expects iterable objects in several different contexts, the most important being the for
                     statement. In the statement for X in Y, Y must be an iterator or some object for which iter() can
                     create
                     an iterator. These two statements are equivalent:</p>
-                <code>
+                <div class="code-frame"><code>
                     for i in iter(obj):<br>
-                        print(i)<br>
+                    &nbsp;print(i)<br><br>
                     for i in obj:<br>
-                        print(i)
-                </code>
+                    &nbsp;print(i)
+                </code></div>
                 <p>Iterators can be materialized as lists or tuples by using the list() or tuple() constructor
                     functions:
                 </p>
-                <code>
+                <div class="code-frame"><code>
                         >>> L = [1, 2, 3]<br>
                         >>> iterator = iter(L)<br>
                         >>> t = tuple(iterator)<br>
                         >>> t<br>
                         (1, 2, 3)
-                </code>
+                </code></div>
                 <p>Sequence unpacking also supports iterators: if you know an iterator will return N elements, you can
                     unpack them into an N-tuple:</p>
-                <code>
+                <div class="code-frame"><code>
                         >>> L = [1, 2, 3]<br>
                         >>> iterator = iter(L)<br>
                         >>> a, b, c = iterator<br>
                         >>> a, b, c<br>
                         (1, 2, 3)
-                </code>
+                </code></div>
 
                 <p>Built-in functions such as max() and min() can take a single iterator argument and will return the
                     largest or smallest element. The "in" and "not in" operators also support iterators: X in iterator
@@ -205,6 +207,7 @@
                     create a new iterator.
                 </p>
             </section>
+
             <section class="main-section" id="Generator_expressions_and_list_comprehensions">
                 <header>
                     <p>Generator expressions and list comprehensions</p>
@@ -221,18 +224,18 @@
                     following
                     code:
                 </p>
-                <code>
-                        line_list = ['  line 1\n', 'line 2  \n', ...]<br>
+                <div class="code-frame"><code>
+                        line_list = ['  line 1\n', 'line 2  \n', ...]<br><br>
                         <i># Generator expression -- returns iterator</i><br>
-                        stripped_iter = (line.strip() for line in line_list)<br>
+                        stripped_iter = (line.strip() for line in line_list)<br><br>
                         <i># List comprehension -- returns list</i><br>
                         stripped_list = [line.strip() for line in line_list]
-                </code>
+                </code></div>
                 <p>You can select only certain elements by adding an "if" condition:</p>
-                <code>
+                <div class="code-frame"><code>
                         stripped_list = [line.strip() for line in line_list
                         if line != ""]
-                </code>
+                </code></div>
                 <p> With a list comprehension, you get back a Python list; stripped_list is a list containing the
                     resulting
                     lines, not an iterator. Generator expressions return an iterator that computes the values as
@@ -246,16 +249,16 @@
                 <p>Generator expressions are surrounded by parentheses (“()”) and list comprehensions are surrounded by
                     square brackets (“[]”). Generator expressions have the form:
                 </p>
-                <code>
+                <div class="code-frame"><code>
                         ( expression for expr in sequence1<br>
-                        if condition1<br>
-                        for expr2 in sequence2<br>
-                        if condition2<br>
-                        for expr3 in sequence3 ...<br>
-                        if condition3<br>
-                        for exprN in sequenceN<br>
-                        if conditionN )
-                </code>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if condition1<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for expr2 in sequence2<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if condition2<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for expr3 in sequence3 ...<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if condition3<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for exprN in sequenceN<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if conditionN )
+                </code></div>
                 <p> Again, for a list comprehension only the outside brackets are different (square brackets instead of
                     parentheses).
                 </p>
@@ -267,9 +270,9 @@
                     function call also count. If you want to create an iterator that will be immediately passed to a
                     function you can write:
                 </p>
-                <code>
+                <div class="code-frame"><code>
                         obj_total = sum(obj.count for obj in list_all_objects())
-                </code>
+                </code></div>
                 <p> The for...in clauses contain the sequences to be iterated over. The sequences do not have to be the
                     same
                     length, because they are iterated over from left to right, not in parallel. For each element in
@@ -280,45 +283,46 @@
                 <p> To put it another way, a list comprehension or generator expression is equivalent to the following
                     Python code:
                 </p>
-                <code>
+                <div class="code-frame"><code>
                     for expr1 in sequence1:<br>
-                    if not (condition1):<br>
-                        continue   <i># Skip this element</i><br>
-                    for expr2 in sequence2:<br>
-                        if not (condition2):<br>
-                            continue   <i># Skip this element</i><br>
-                        ...<br>
-                        for exprN in sequenceN:<br>
-                            if not (conditionN):<br>
-                                continue   <i># Skip this element</i><br>
-                            # Output the value of<br>
-                            # the expression.<br>
-                </code>
+                    &nbsp;&nbsp;if not (condition1):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;continue   <i># Skip this element</i><br>
+                    &nbsp;&nbsp;for expr2 in sequence2:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if not (condition2):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue   <i># Skip this element</i><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;for exprN in sequenceN:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if not (conditionN):<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue   <i># Skip this element</i><br><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# Output the value of<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# the expression.<br>
+                </code></div>
                 <p>This means that when there are multiple for...in clauses but no if clauses, the length of the
                     resulting
                     output will be equal to the product of the lengths of all the sequences. If you have two lists of
                     length
                     3, the output list is 9 elements long:</p>
-                <code>
+                <div class="code-frame"><code>
                         >>> seq1 = 'abc'<br>
                         >>> seq2 = (1, 2, 3)<br>
                         >>> [(x, y) for x in seq1 for y in seq2]  #doctest: +NORMALIZE_WHITESPACE<br>
                         [('a', 1), ('a', 2), ('a', 3),<br>
                         ('b', 1), ('b', 2), ('b', 3),<br>
                         ('c', 1), ('c', 2), ('c', 3)]
-                </code>
+                </code></div>
                 <p>To avoid introducing an ambiguity into Python’s grammar, if expression is creating a tuple, it must
                     be
                     surrounded with parentheses. The first list comprehension below is a syntax error, while the second
                     one
                     is correct:</p>
-                <code>
+                <div class="code-frame"><code>
                         <i># Syntax error</i><br>
                         [x, y for x in seq1 for y in seq2]<br>
                         <i># Correct</i><br>
                         [(x, y) for x in seq1 for y in seq2]<br>
-                </code>
+                </code></div>
             </section>
+
             <section class="main-section" id="Generators">
                 <header>
                     <p>Generators</p>
@@ -337,11 +341,11 @@
                 </p>
                 <p>Here’s the simplest example of a generator function:
                 </p>
-                <code>
+                <div class="code-frame"><code>
                         >>> def generate_ints(N):<br>
-                        ...    for i in range(N):<br>
-                        ...        yield i
-                </code>
+                        ... &nbsp;&nbsp;for i in range(N):<br>
+                        ... &nbsp;&nbsp;&nbsp;&nbsp;yield i
+                </code></div>
                 <p> Any function containing a yield keyword is a generator function; this is detected by Python’s
                     bytecode compiler which compiles the function specially as a result.
                 </p>
@@ -354,10 +358,10 @@
                 </p>
                 <p>Here’s a sample usage of the generate_ints() generator:
                 </p>
-                <code>
+                <div class="code-frame"><code>
                         >>> gen = generate_ints(3)<br>
                         >>> gen  #doctest: +ELLIPSIS<br>
-                        <generator object generate_ints at ...><br>
+                        &lt;generator object generate_ints at ...&gt;<br>
                         >>> next(gen)<br>
                         0<br>
                         >>> next(gen)<br>
@@ -366,10 +370,10 @@
                         2<br>
                         >>> next(gen)<br>
                         Traceback (most recent call last):<br>
-                            File "stdin", line 1, in <module><br>
-                            File "stdin", line 2, in generate_ints<br>
+                        &nbsp;&nbsp;File "stdin", line 1, in <module><br>
+                        &nbsp;&nbsp;File "stdin", line 2, in generate_ints<br>
                         StopIteration
-                </code>
+                </code></div>
                 <p> You could equally write for i in generate_ints(5), or a, b, c = generate_ints(3).
                 </p>
                 <p>Inside a generator function, return value causes StopIteration(value) to be raised from the
@@ -386,20 +390,21 @@
                     interesting examples. Here’s one generator that implements an in-order traversal of a tree using
                     generators recursively.
                 </p>
-                <code>
+                <div class="code-frame"><code>
                         <i># A recursive generator that generates Tree leaves in in-order.</i><br>
                         def inorder(t):<br>
-                            if t:<br>
-                                for x in inorder(t.left):<br>
-                                    yield x<br>
-                                yield t.label<br>
-                                for x in inorder(t.right):<br>
-                                    yield x<br>
-                </code>
+                        &nbsp;&nbsp;if t:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;for x in inorder(t.left):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yield x<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;yield t.label<br><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;for x in inorder(t.right):<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yield x<br>
+                </code></div>
                 <p>Two other examples in test_generators.py produce solutions for the N-Queens problem (placing N queens
                     on an NxN chess board so that no queen threatens another) and the Knight’s Tour (finding a route
                     that takes a knight to every square of an NxN chessboard without visiting any square twice).</p>
             </section>
+
             <section class="main-section" id="Built-in_functions">
                 <header>
                     <p>Built-in functions</p>
@@ -409,49 +414,372 @@
                     expressions:</p>
                 <p>map(f, iterA, iterB, ...) returns an iterator over the sequence
                     f(iterA[0], iterB[0]), f(iterA[1], iterB[1]), f(iterA[2], iterB[2]), ....</p>
-                <code>
+                <div class="code-frame"><code>
                     >>> def upper(s):<br>
-                    ...     return s.upper()
-                </code>
-                <code>
+                    ... &nbsp;&nbsp;return s.upper()
+                </code></div>
+                <div class="code-frame"><code>
                         >>> list(map(upper, ['sentence', 'fragment']))<br>
                         ['SENTENCE', 'FRAGMENT']<br>
                         >>> [upper(s) for s in ['sentence', 'fragment']]<br>
                         ['SENTENCE', 'FRAGMENT']
-                </code>
+                </code></div>
                 <p> You can of course achieve the same effect with a list comprehension.
                 </p>
                 <p>
-                    <code>filter(predicate, iter) </code>returns an iterator over all the sequence elements that meet a
+                    <code>filter(predicate, iter) </code>returns an iterator over all the
+                    sequence elements that meet a
                     certain condition, and is similarly duplicated by list comprehensions. A predicate is a function
                     that returns the truth value of some condition; for use with filter(), the predicate must take a
                     single value.
                 </p>
+                <div class="code-frame"><code>
+                        >>> def is_even(x):<br>
+                        ... &nbsp;&nbsp;return (x % 2) == 0
+                </code></div>
+                <div class="code-frame"><code>
+                        >>> list(filter(is_even, range(10)))<br>
+                        [0, 2, 4, 6, 8]
+                </code></div>
+                <p>This can also be written as a list comprehension:</p>
+                <div class="code-frame"><code>
+                        >>> list(x for x in range(10) if is_even(x))<br>
+                        [0, 2, 4, 6, 8]
+                </code></div>
+                <p><code>enumerate(iter, start=0)</code> counts off the elements in the iterable returning 2-tuples
+                    containing the count (from start) and each element.</p>
+                <div class="code-frame"><code>
+                        >>> for item in enumerate(['subject', 'verb', 'object']):<br>
+                        ...     print(item)<br>
+                        (0, 'subject')<br>
+                        (1, 'verb')<br>
+                        (2, 'object')
+                </code></div>
+                <p><code>enumerate()</code> is often used when looping through a list and recording the indexes at which
+                    certain conditions are met:</p>
+                <div class="code-frame"><code>
+                        f = open('data.txt', 'r')<br>
+                        for i, line in enumerate(f):<br>
+                        &nbsp;&nbsp;if line.strip() == '':<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;print('Blank line at line #%i' % i)
+                </code></div>
+                <p><code>sorted(iterable, key=None, reverse=False)</code> collects all the elements of the iterable into
+                    a list,
+                    sorts the list, and returns the sorted result. The key and reverse arguments are passed through to
+                    the constructed list’s sort() method.</p>
+                <div class="code-frame"><code>
+                        >>> import random<br>
+                        >>> # Generate 8 random numbers between [0, 10000)<br>
+                        >>> rand_list = random.sample(range(10000), 8)<br>
+                        >>> rand_list<br>
+                        [769, 7953, 9828, 6431, 8442, 9878, 6213, 2207]<br>
+                        >>> sorted(rand_list)<br>
+                        [769, 2207, 6213, 6431, 7953, 8442, 9828, 9878]<br>
+                        >>> sorted(rand_list, reverse=True)<br>  
+                        [9878, 9828, 8442, 7953, 6431, 6213, 2207, 769]
+                </code></div>
+                <p>(For a more detailed discussion of sorting, see the Sorting HOW TO.)</p>
+                <p>The <code>any(iter)</code> and <code>all(iter)</code> built-ins look at the truth values of an
+                    iterable’s contents. any()
+                    returns True if any element in the iterable is a true value, and all() returns True if all of the
+                    elements are true values:</p>
+                <div class="code-frame"><code>
+                        >>> any([0, 1, 0])<br>
+                        True<br>
+                        >>> any([0, 0, 0])<br>
+                        False<br>
+                        >>> any([1, 1, 1])<br>
+                        True<br>
+                        >>> all([0, 1, 0])<br>
+                        False<br>
+                        >>> all([0, 0, 0])<br>
+                        False<br>
+                        >>> all([1, 1, 1])<br>
+                        True
+                </code></div>
+                <p><code>zip(iterA, iterB, ...)</code> takes one element from each iterable and returns them in a tuple:
+                </p>
+                <div class="code-frame"><code>
+                        zip(['a', 'b', 'c'], (1, 2, 3)) =><br>
+                        &nbsp;&nbsp;('a', 1), ('b', 2), ('c', 3)
+                </code></div>
+
+                <p> It doesn’t construct an in-memory list and exhaust all the input iterators before returning; instead
+                    tuples are constructed and returned only if they’re requested. (The technical term for this
+                    behaviour is lazy evaluation.)
+                </p>
+                <p>This iterator is intended to be used with iterables that are all of the same length. If the iterables
+                    are of different lengths, the resulting stream will be the same length as the shortest iterable.
+                </p>
+                <div class="code-frame"><code>
+                        zip(['a', 'b'], (1, 2, 3)) =><br>
+                        &nbsp;&nbsp;('a', 1), ('b', 2)
+                </code></div>
+                <p>You should avoid doing this, though, because an element may be taken from the longer iterators and
+                    discarded. This means you can’t go on to use the iterators further because you risk skipping a
+                    discarded element.</p>
             </section>
+
             <section class="main-section" id="The_itertools_module">
                 <header>
                     <p>The itertools module</p>
                 </header>
+                <p>The itertools module contains a number of commonly-used iterators as well as functions for combining
+                    several iterators. This section will introduce the module’s contents by showing small examples.</p>
+                <p>The module’s functions fall into a few broad classes:</p>
+                <ul>
+                    <li> Functions that create a new iterator based on an existing iterator.
+                    </li>
+                    <li> Functions for treating an iterator’s elements as function arguments.
+                    </li>
+                    <li> Functions for selecting portions of an iterator’s output.
+                    </li>
+                    <li> A function for grouping an iterator’s output.</p>
+                    </li>
+                </ul>
             </section>
+
             <section class="main-section" id="The_functools_module">
                 <header>
                     <p>The functools module</p>
                 </header>
+                <p> The functools module in Python 2.5 contains some higher-order functions. A higher-order function
+                    takes one or more functions as input and returns a new function. The most useful tool in this module
+                    is the functools.partial() function.
+                </p>
+                <p>For programs written in a functional style, you’ll sometimes want to construct variants of existing
+                    functions that have some of the parameters filled in. Consider a Python function f(a, b, c); you may
+                    wish to create a new function g(b, c) that’s equivalent to f(1, b, c); you’re filling in a value for
+                    one of f()’s parameters. This is called “partial function application”.
+                </p>
+                <p>The constructor for partial() takes the arguments (function, arg1, arg2, ..., kwarg1=value1,
+                    kwarg2=value2). The resulting object is callable, so you can just call it to invoke function with
+                    the filled-in arguments.
+                </p>
+                <p>Here’s a small but realistic example:
+                </p>
+                <div class="code-frame"><code>
+                        import functools<br><br>
+                        def log(message, subsystem):<br>
+                        &nbsp;&nbsp;"""Write the contents of 'message' to the specified subsystem."""<br>
+                        &nbsp;&nbsp;print('%s: %s' % (subsystem, message))<br>
+                        &nbsp;&nbsp;...<br><br>
+                        server_log = functools.partial(log, subsystem='server')<br>
+                        server_log('Unable to open socket')
+                </code></div>
+                <p><code>functools.reduce(func, iter, [initial_value])</code> cumulatively performs an operation on all
+                    the iterable’s elements and, therefore, can’t be applied to infinite iterables. func must be a
+                    function that takes two elements and returns a single value. functools.reduce() takes the first two
+                    elements A and B returned by the iterator and calculates func(A, B). It then requests the third
+                    element, C, calculates func(func(A, B), C), combines this result with the fourth element returned,
+                    and continues until the iterable is exhausted. If the iterable returns no values at all, a TypeError
+                    exception is raised. If the initial value is supplied, it’s used as a starting point and
+                    func(initial_value, A) is the first calculation.</p>
+                <div class="code-frame"><code>
+                        >>> import operator, functools<br>
+                        >>> functools.reduce(operator.concat, ['A', 'BB', 'C'])<br>
+                        'ABBC'<br>
+                        >>> functools.reduce(operator.concat, [])<br>
+                        Traceback (most recent call last):<br>
+                        ...<br>
+                        TypeError: reduce() of empty sequence with no initial value<br>
+                        >>> functools.reduce(operator.mul, [1, 2, 3], 1)<br>
+                        6<br>
+                        >>> functools.reduce(operator.mul, [], 1)<br>
+                        1
+                </code></div>
+                <p>If you use operator.add() with functools.reduce(), you’ll add up all the elements of the iterable.
+                    This case is so common that there’s a special built-in called sum() to compute it:</p>
+                <div class="code-frame"><code>
+                        >>> import functools, operator<br>
+                        >>> functools.reduce(operator.add, [1, 2, 3, 4], 0)<br>
+                        10<br>
+                        >>> sum([1, 2, 3, 4])<br>
+                        10<br>
+                        >>> sum([])<br>
+                        0
+                </code></div>
+                <p>For many uses of <code>functools.reduce()</code>, though, it can be clearer to just write the obvious
+                    for loop:</p>
+                <div class="code-frame"><code>
+                        import functools<br>
+                        # Instead of:<br>
+                        product = functools.reduce(operator.mul, [1, 2, 3], 1)<br><br>
+                        # You can write:<br>
+                        product = 1<br>
+                        for i in [1, 2, 3]:<br>
+                        &nbsp;&nbsp;product *= i
+                </code></div>
+                <p>A related function is itertools.accumulate(iterable, func=operator.add). It performs the same
+                    calculation, but instead of returning only the final result, accumulate() returns an iterator that
+                    also yields each partial result:</p>
+                <div class="code-frame"><code>
+                        itertools.accumulate([1, 2, 3, 4, 5]) =><br>
+                        1, 3, 6, 10, 15<br><br>
+                        itertools.accumulate([1, 2, 3, 4, 5], operator.mul) =><br>
+                        1, 2, 6, 24, 120
+                </code></div>
             </section>
+
             <section class="main-section" id="Small_functions_and_the_lambda_expression">
                 <header>
                     <p>Small functions and the lambda expression</p>
                 </header>
+                <p> When writing functional-style programs, you’ll often need little functions that act as predicates or
+                    that combine elements in some way.
+                </p>
+                <p>If there’s a Python built-in or a module function that’s suitable, you don’t need to define a new
+                    function at all:
+                </p>
+                <div class="code-frame"><code>
+                        stripped_lines = [line.strip() for line in lines]<br>
+                        existing_files = filter(os.path.exists, file_list)
+                </code></div>
+                <p>If the function you need doesn’t exist, you need to write it. One way to write small functions is to
+                    use the lambda expression. lambda takes a number of parameters and an expression combining these
+                    parameters, and creates an anonymous function that returns the value of the expression:</p>
+                <div class="code-frame"><code>
+                        adder = lambda x, y: x+y<br><br>
+                        print_assign = lambda name, value: name + '=' + str(value)
+                </code></div>
+                <p>An alternative is to just use the def statement and define a function in the usual way:</p>
+                <div class="code-frame"><code>
+                        def adder(x, y):<br>
+                        &nbsp;&nbsp;return x + y<br><br>
+                        def print_assign(name, value):<br>
+                        &nbsp;&nbsp;return name + '=' + str(value)
+                </code></div>
+                <p>Which alternative is preferable? That’s a style question; my usual course is to avoid using lambda.
+                </p>
+                <p>One reason for my preference is that lambda is quite limited in the functions it can define. The
+                    result has to be computable as a single expression, which means you can’t have multiway if...
+                    elif... else comparisons or try... except statements. If you try to do too much in a lambda
+                    statement, you’ll end up with an overly complicated expression that’s hard to read. Quick, what’s
+                    the following code doing?</p>
+                <div class="code-frame"><code>
+                        import functools<br>
+                        total = functools.reduce(lambda a, b: (0, a[1] + b[1]), items)[1]
+                </code></div>
+                <p>You can figure it out, but it takes time to disentangle the expression to figure out what’s going on.
+                    Using a short nested def statements makes things a little bit better:</p>
+                <div class="code-frame"><code>
+                        import functools<br>
+                        def combine(a, b):<br>
+                        &nbsp;&nbsp;return 0, a[1] + b[1]<br><br>
+                        total = functools.reduce(combine, items)[1]
+                </code></div>
+                <p>But it would be best of all if I had simply used a for loop:</p>
+                <div class="code-frame"><code>
+                        total = 0<br>
+                        for a, b in items:<br>
+                        &nbsp;&nbsp;total += b
+                </code></div>
+                <p>Or the sum() built-in and a generator expression:</p>
+                <div class="code-frame"><code>
+                        total = sum(b for a, b in items)
+                </code></div>
+                <p> Many uses of functools.reduce() are clearer when written as for loops.
+                </p>
+                <p>Fredrik Lundh once suggested the following set of rules for refactoring uses of lambda:
+                </p>
+                <ol>
+                    <li>Write a lambda function.</li>
+                    <li>Write a comment explaining what the heck that lambda does.</li>
+                    <li>Study the comment for a while, and think of a name that captures the essence of the comment.
+                    </li>
+                    <li>Convert the lambda to a def statement, using that name.</li>
+                    <li>Remove the comment.</li>
+                </ol>
+                <p>I really like these rules, but you’re free to disagree about whether this lambda-free style is
+                    better.
+
+                </p>
             </section>
+
             <section class="main-section" id="Revision_History_and_Acknowledgements">
                 <header>
                     <p>Revision History and Acknowledgements</p>
                 </header>
+                <p>The author would like to thank the following people for offering suggestions, corrections and
+                    assistance with various drafts of this article: Ian Bicking, Nick Coghlan, Nick Efford, Raymond
+                    Hettinger, Jim Jewett, Mike Krell, Leandro Lameiro, Jussi Salmela, Collin Winter, Blake Winton.
+                </p>
+                <p>Version 0.1: posted June 30 2006.
+                </p>
+                <p>Version 0.11: posted July 1 2006. Typo fixes.
+                </p>
+                <p>Version 0.2: posted July 10 2006. Merged genexp and listcomp sections into one. Typo fixes.
+                </p>
+                <p>Version 0.21: Added more references suggested on the tutor mailing list.
+                </p>
+                <p>Version 0.30: Adds a section on the functional module written by Collin Winter; adds short section on
+                    the operator module; a few other edits.
+                </p>
             </section>
+
             <section class="main-section" id="References">
                 <header>
                     <p>References</p>
                 </header>
+
+                <h3>General</h3>
+
+                <p>Structure and Interpretation of Computer Programs, by Harold Abelson and Gerald Jay Sussman with
+                    Julie Sussman. Full text at <a href="https://mitpress.mit.edu/sites/default/files/sicp/index.html"
+                        target="_blank">https://mitpress.mit.edu/sicp/</a>. In this classic textbook of computer
+                    science, chapters 2 and 3 discuss the use of sequences and streams to organize the data flow inside
+                    a program. The book uses Scheme for its examples, but many of the design approaches described in
+                    these chapters are applicable to functional-style Python code.
+                </p>
+                <p><a href="http://www.defmacro.org/ramblings/fp.html"
+                        target="_blank">http://www.defmacro.org/ramblings/fp.html</a>: A general introduction to
+                    functional programming that uses
+                    Java examples and has a lengthy historical introduction.
+                </p>
+                <p><a href="https://en.wikipedia.org/wiki/Functional_programming"
+                        target="_blank">https://en.wikipedia.org/wiki/Functional_programming</a>: General Wikipedia
+                    entry describing functional
+                    programming.
+                </p>
+                <p><a href="https://en.wikipedia.org/wiki/Coroutine"
+                        target="_blank">https://en.wikipedia.org/wiki/Coroutine</a>: Entry for coroutines.
+                </p>
+                <p><a href="https://en.wikipedia.org/wiki/Currying"
+                        target="_blank">https://en.wikipedia.org/wiki/Currying</a>: Entry for the concept of currying.
+                </p>
+
+                <h3>Python-specific</h3>
+
+                <p><a href="http://gnosis.cx/TPiP/" target="_blank">http://gnosis.cx/TPiP/</a>: The first chapter of
+                    David Mertz’s book Text Processing in Python discusses
+                    functional programming for text processing, in the section titled “Utilizing Higher-Order Functions
+                    in
+                    Text Processing”.</p>
+                <p>Mertz also wrote a 3-part series of articles on functional programming for IBM’s DeveloperWorks site;
+                    see <a href="https://developer.ibm.com/technologies/linux/" target="_blank">part 1</a>, <a
+                        href="https://developer.ibm.com/tutorials/l-prog2/" target="_blank">part 2</a>, and <a
+                        href="https://developer.ibm.com/tutorials/l-prog3/" target="_blank">part 3</a>,</p>
+
+                <h3> Python documentation</h3>
+
+                <p> Documentation for the <a href="https://docs.python.org/3.7/library/itertools.html#module-itertools"
+                        target="_blank"><code>itertools</code></a> module.
+                </p>
+                <p> Documentation for the <a href="https://docs.python.org/3.7/library/functools.html#module-functools"
+                        target="_blank"><code>functools</code></a> module.
+                </p>
+                <p> Documentation for the <a href="https://docs.python.org/3.7/library/operator.html#module-operator"
+                        target="_blank"><code>operator</code></a> module.
+                </p>
+                <p><a href="https://www.python.org/dev/peps/pep-0289/" target="_blank">PEP 289</a>: “Generator
+                    Expressions”
+                </p>
+                <p><a href="https://www.python.org/dev/peps/pep-0342/" target="_blank">PEP 342</a>: “Coroutines via
+                    Enhanced Generators” describes the new generator features in Python 2.5.
+                </p>
+                <p>-- All the documentation in this page is taken from <a
+                        href="https://docs.python.org/3.7/howto/functional.html" target="_blank">Python Software
+                        Foundation</a> --</p>
             </section>
         </main>
     </div>
