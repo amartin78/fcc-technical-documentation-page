@@ -9,11 +9,11 @@ html, body {
 h2 {
     font-weight: normal;
     font-size: 1.4rem;
-    max-width: 20vw;
+    min-width: 20vw;
 }
 
-#top {
-    position: fixed;
+#start {
+    display: none;
 }
 
 .main-section header {
@@ -21,47 +21,63 @@ h2 {
     font-size: 1.4rem;
 }
 
-#container {
+/* #container {
     display: grid;
     grid-template-columns: 23% 1fr;
     grid-template-areas:
     "navbar document";
     
-}
+} */
 
 #navbar {
     position: fixed;
-    grid-area: navbar;
-    display: grid;
-    align-content: flex-start;
-    overflow-y: scroll;
+    top: 0;
+    left: 0;
+    /* grid-area: navbar; */
+    /* display: grid; */
+    /* align-content: flex-start; */
+    /* overflow-y: scroll; */
     max-height: 100vh;
-    max-width: 23vw;
+    min-width: 20rem;
+    width: 21rem;
     background-color: white;
-    grid-row-gap: 3px;
+    /* grid-row-gap: 3px; */
 }
 
 #navbar header {
-    position: fixed;
+    /* position: fixed; */
     background-color: lightgray;
     padding: 0 1.32rem;
-    max-width: 20vw;
+    min-width: 16rem;
 }
 
-a {
-    color: #333;
-    text-decoration: none;
-    padding: 1rem 0 1rem 1.5rem;
+#navbar ul {
+    list-style-type: none;
+    padding-left: 1rem;
+    margin: 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: lightgray;
 }
 
-a:first-of-type {
+#navbar ul li {
+    padding: 1rem 1rem 1rem 0rem;    
+}
+
+#navbar ul a {
+    color: #333;
+    text-decoration: none;
+    padding: 1rem 1rem 1rem 0rem;
+    /* background-color: lightgray; */
+}
+
+/* a:first-of-type {
     margin-top: 7.3rem;  
 }
 
 a:last-of-type {
     margin-bottom: 1rem;
-}
+} */
 
 #References a {
     color: royalblue;
@@ -75,7 +91,9 @@ a:last-of-type {
 }
 
 #main-doc {
-    grid-area: document;
+    /* grid-area: document; */
+    position: absolute;
+    margin-left: 350px;
     padding: 0 3rem 3rem 3rem;
     text-align: justify;
 }
@@ -92,25 +110,26 @@ h3 {
 }
 
 @media (max-width: 550px) {
-    #top {
+    #start {
+        display: flex;
         position: fixed;
         right: 2rem;
         bottom: 1.5rem;
         font-size: 3rem;
     }
-    #top p, #top a {
+    #start p, #start a {
         margin: 0px;
         padding: 0px;
         background-color: transparent;
     }
 
-    #container {
+    /* #container {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto;
         grid-template-areas:
         "navbar"
         "document";
-    }
+    } */
 
     #navbar header {
         position: inherit;
