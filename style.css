@@ -10,6 +10,8 @@ h2 {
     font-weight: normal;
     font-size: 1.4rem;
     min-width: 20vw;
+    margin: 0;
+    padding: 0.8rem 0;
 }
 
 #start {
@@ -21,31 +23,17 @@ h2 {
     font-size: 1.4rem;
 }
 
-/* #container {
-    display: grid;
-    grid-template-columns: 23% 1fr;
-    grid-template-areas:
-    "navbar document";
-    
-} */
-
 #navbar {
     position: fixed;
     top: 0;
     left: 0;
-    /* grid-area: navbar; */
-    /* display: grid; */
-    /* align-content: flex-start; */
-    /* overflow-y: scroll; */
     max-height: 100vh;
     min-width: 20rem;
     width: 21rem;
     background-color: white;
-    /* grid-row-gap: 3px; */
 }
 
 #navbar header {
-    /* position: fixed; */
     background-color: lightgray;
     padding: 0 1.32rem;
     min-width: 16rem;
@@ -53,31 +41,28 @@ h2 {
 
 #navbar ul {
     list-style-type: none;
-    padding-left: 1rem;
+    padding: 0rem;
     margin: 0px;
     overflow-x: hidden;
     overflow-y: auto;
     background-color: lightgray;
+    height: 84vh;
 }
 
 #navbar ul li {
-    padding: 1rem 1rem 1rem 0rem;    
+    padding: 1rem;    
+    border-bottom: 1px solid white;
+}
+
+#navbar ul li:first-of-type {   
+    border-top: 1px solid white;
 }
 
 #navbar ul a {
     color: #333;
     text-decoration: none;
     padding: 1rem 1rem 1rem 0rem;
-    /* background-color: lightgray; */
 }
-
-/* a:first-of-type {
-    margin-top: 7.3rem;  
-}
-
-a:last-of-type {
-    margin-bottom: 1rem;
-} */
 
 #References a {
     color: royalblue;
@@ -91,7 +76,6 @@ a:last-of-type {
 }
 
 #main-doc {
-    /* grid-area: document; */
     position: absolute;
     margin-left: 350px;
     padding: 0 3rem 3rem 3rem;
@@ -123,14 +107,6 @@ h3 {
         background-color: transparent;
     }
 
-    /* #container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto;
-        grid-template-areas:
-        "navbar"
-        "document";
-    } */
-
     #navbar header {
         position: inherit;
         padding: 0 1.32rem;
@@ -138,8 +114,13 @@ h3 {
     }
 
     #navbar {
-        position: inherit;
-        max-width: 100vw;
+        position: initial;
+        /* max-width: 100vw;
+        width: 23rem; */
+    }
+
+    #navbar ul {
+        height: 56vh;
     }
 
     a:first-of-type {
@@ -151,5 +132,7 @@ h3 {
         text-align: justify;
         max-width: 100vw;
         overflow-x: hidden;
+        margin-left: 0rem;
+        /* margin-top: 6rem; */
     }
 }
