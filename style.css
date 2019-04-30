@@ -31,7 +31,8 @@ h2 {
     top: 0;
     left: 0;
     max-height: 100vh;
-    min-width: 20rem;
+    /* min-width: 20rem; */
+    min-width: 100vw;
     width: 21rem;
     background-color: white;
 }
